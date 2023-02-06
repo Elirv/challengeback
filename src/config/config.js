@@ -1,35 +1,28 @@
-const dotenv = require ('dotenv')
-dotenv.config()
-// DB connection
-const PORT           = process.env.PORT || 4000
-// const DB             = process.env.MONGO_URI 
-// const DB_TEST        = process.env.MONGO_URI_TEST 
+const dotenv = require("dotenv");
+const logger = require("loglevel");
 
-// // Auth0
-// const AUTH0_AUDIENCE = process.env.AUTH0_AUDIENCE
-// const AUTH0_ISSUER   = process.env.AUTH0_ISSUER
+dotenv.config();
 
-// // Front page
-// const APP_ORIGIN     = process.env.APP_ORIGIN
+logger.enableAll();
 
-// // Cloudinary
-// const CLOUD_NAME     = process.env.CLOUD_NAME
-// const CLOUD_KEY      = process.env.CLOUD_KEY
-// const CLOUD_SECRET   = process.env.CLOUD_SECRET
+const ENV = process.env.NODE_ENV || "development";
 
-// // Endpoint Version 
-// const VERSION = "/api/v1/"
-// const ROUTING_VERSION = "./v1"
+const CONFIG = {
+    development: {
+        app: {
+            PORT: process.env.PORT || 4000,
+        },
 
-module.exports = {
-    PORT,
-    // DB: DB_TEST,
-    // AUTH0_AUDIENCE,
-    // AUTH0_ISSUER,
-    // APP_ORIGIN,
-    // CLOUD_NAME,
-    // CLOUD_KEY,
-    // CLOUD_SECRET,
-    // VERSION,
-    // ROUTING_VERSION
-}
+        logger: {
+            warn: logger.warn,
+            info: logger.info,
+            error: logger.error,
+        },
+
+        db: {
+            uri: process.env.MONGODB_URI_CLUSTER,
+        },
+    },
+};
+
+module.exports = CONFIG[ENV];

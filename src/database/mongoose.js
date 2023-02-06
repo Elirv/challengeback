@@ -1,12 +1,13 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const config = require("../config/config");
 
-mongoose.set("strictQuery", false)
+mongoose.set("strictQuery", false);
 
-function connectDataBase() {
-    mongoose.connect(config.db.uri, {
+function connect() {
+    return mongoose.connect(config.db.uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-    })
+    });
 }
 
-module.exports = { connectDataBase }
+module.exports = connect;
