@@ -1,0 +1,38 @@
+{
+  "name": "back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elirv/challengeback.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Elirv/challengeback/issues"
+  },
+  "homepage": "https://github.com/Elirv/challengeback#readme",
+  "devDependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "helmet": "^6.0.1",
+    "mongoose": "^6.9.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20",
+    "validator": "^13.9.0"
+  },
+  "dependencies": {
+    "cloudinary": "^1.33.0",
+    "express-fileupload": "^1.4.0",
+    "express-jwt": "^8.4.0",
+    "fs-extra": "^11.1.0",
+    "jwks-rsa": "^3.0.1"
+  }
+}
