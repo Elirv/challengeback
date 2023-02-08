@@ -1,13 +1,12 @@
-const express = require("express")
-const userRouter = express.Router()
-const {userController} = require("../controllers/users.controller")
-// const { checkJwt } = require("../../middlewares/checkJwt.middleware")
+const userRouter = require("express").Router();
+const userController = require("../controllers/users.controller")
+const { jwtCheck } = require("../middlewares/jwt-middleware")
 
 userRouter
-    .get("/", userController.getAllUsers )
-    .get("/:id", userController.getUserById)
-    // .post("/", )
-    // .delete("/:id", )
+    .get("/", jwtCheck, userController.getAllUsers )
+    .get("/:id", jwtCheck, userController.getUserById)
+    .post("/create", userController.loginUser)
+    .delete("/:id", userController.deleteUser) //jwtCheck
     // .patch("/:id", )
 
 module.exports = userRouter;

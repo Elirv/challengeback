@@ -24,15 +24,8 @@ const getAllUsers = async (req, res) => {
     }
 }
 
-const getUserById =  async (req, res) => {
-    const { params: { id } } = req
-
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).send({
-            status: "FALSE",
-            message: `${id} is an invalid ID`
-        })
-    }
+const getUserById = async (req, res) => {
+    const { id } = req.params;
 
     try {
         const user = await userModel
@@ -54,4 +47,31 @@ const getUserById =  async (req, res) => {
     }
 }
 
-module.exports = { getAllUsers, getUserById };
+const loginUser = async (req, res, next) => {
+    const { email } = req.body;
+
+    try {
+        const userDBexists = await userModel.findOne({ email }).lean().exec();
+        if (userDBexists) {
+            res.status(200).send({ status: true, data: userDBexists });
+        } else {
+            const userDB = await userModel.create(req.body);
+            res.status(201).send({ status: true, data: userDB });
+        }
+    } catch (error) {
+        res.status(500).send({ status: false, msg: error.message });
+    }
+}
+
+const deleteUser = async (req, res, next) => {
+    const { id } = req.params
+    try {
+        const user = await userModel.findOneAndDelete({ _id: id })
+
+        res.status(200).send({ status: true, data: user._id })
+    } catch (error) {
+        res.status(500).send({ status: false, msg: error.message })
+    }
+}
+
+module.exports = { getAllUsers, getUserById, loginUser, deleteUser };

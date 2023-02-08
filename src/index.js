@@ -1,10 +1,10 @@
-const connect = require("./database/mongoose");
+const connectDB = require("./database/connectDB");
 const app = require("./server");
 const config = require("./config/config");
 
 const startServer = async () => {
     try {
-        await connect(config.logger.info("MongoDB connected"));
+        await connectDB(config.logger.info("MongoDB connected"));
         app.listen(process.env.PORT, () => {
             config.logger.info(`Server is running in port ${process.env.PORT}`);
         });

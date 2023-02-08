@@ -10,7 +10,7 @@ const ENV = process.env.NODE_ENV || "development";
 const CONFIG = {
     development: {
         app: {
-            PORT: process.env.PORT || 4000,
+            PORT: process.env.PORT || 5005,
         },
 
         logger: {
@@ -22,6 +22,13 @@ const CONFIG = {
         db: {
             uri: process.env.MONGODB_URI_CLUSTER,
         },
+
+        auth0: {
+            client_origin: process.env.AUTH0_AUDIENCE,
+            audience: process.env.AUTH0_ISSUER,
+            issuer: process.env.APP_ORIGIN
+        }
+
     },
 };
 

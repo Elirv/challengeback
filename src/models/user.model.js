@@ -1,39 +1,42 @@
-const { Schema, model } = require("mongoose")
-const validator = require("validator")
+const { Schema, model } = require("mongoose");
+const validator = require("validator");
 
-const userSchema = new Schema({
-    username: {
+const UserSchema = Schema({
+    firstName: {
         type: String,
-        required: [true, "the username is required"],
-        trim: true,
+        required: [true, "the firstname is required"],
     },
-    firstname: {
+
+    lastName: {
         type: String,
-        trim: true,
+        required: [true, "the lastname is required"],
     },
-    lastname: {
+
+    userName: {
         type: String,
-        trim: true,
+        unique: false,
     },
+
     email: {
         type: String,
-        required: [true, "the email is required"],
-        unique: [true, "the email must be unique"],
+        required: [true, "The email is required"],
         trim: true,
+        unique: true,
         validate: {
-            validator: value => validator.isEmail(value),
-            message: props => `The email ${props.value} is not valid.`
-        }
+            validator: (value) => validator.isEmail(value),
+            message: (props) => `The email ${props.value} is not valid`,
+        },
     },
+
     memes: [
         {
             type: Schema.Types.ObjectId,
             ref: 'memes',
             default: []
         }
-    ]
+    ],
 });
 
-const userModel = model("users", userSchema);
+const UserModel = model("users", UserSchema);
 
-module.exports = model(userModel)
+module.exports = UserModel;

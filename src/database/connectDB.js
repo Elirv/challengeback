@@ -3,11 +3,11 @@ const config = require("../config/config");
 
 mongoose.set("strictQuery", false);
 
-function connect() {
+function connectDB() {
     return mongoose.connect(config.db.uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
 }
 
-module.exports = connect;
+module.exports = connectDB;
