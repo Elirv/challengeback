@@ -3,8 +3,8 @@ const userController = require("../controllers/users.controller")
 const { jwtCheck } = require("../middlewares/jwt-middleware")
 
 userRouter
-    .get("/", jwtCheck, userController.getAllUsers )
-    .get("/:id", jwtCheck, userController.getUserById)
+    .get("/", userController.getAllUsers ) //jwtCheck
+    .get("/:id", userController.getUserById)  //jwtCheck
     .post("/create", userController.loginUser)
     .delete("/:id", userController.deleteUser) //jwtCheck
     // .patch("/:id", )
