@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 const validator = require("validator");
 
-const UserSchema = Schema({
+const UserSchema = new Schema({
     firstName: {
         type: String,
         required: [true, "the firstname is required"],
@@ -31,8 +31,7 @@ const UserSchema = Schema({
     memes: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'memes',
-            default: []
+            ref: 'memes'
         }
     ],
 });

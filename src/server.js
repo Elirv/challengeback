@@ -7,6 +7,7 @@ const userRouter = require("./v1routes/user.routes");
 const memesRouter = require("./v1routes/memes.routes");
 const app = express();
 
+// Middlewares
 app.use(cors());
 app.use(morgan("dev"));
 app.use(helmet());
@@ -16,6 +17,7 @@ app.use(
     })
 );
 
+// Routes
 app.use("/user", userRouter);
 app.use("/memes", memesRouter);
 
