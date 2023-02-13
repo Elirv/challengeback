@@ -3,8 +3,8 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 const { json } = require("body-parser");
 const cors = require("cors");
-const userRouter = require("./v1routes/user.routes");
-const memesRouter = require("./v1routes/memes.routes");
+const userRouter = require("./routes/user.routes");
+const memeRouter = require("./routes/meme.routes");
 const app = express();
 
 // Middlewares
@@ -18,7 +18,7 @@ app.use(
 );
 
 // Routes
+app.use("/memes", memeRouter);
 app.use("/user", userRouter);
-app.use("/memes", memesRouter);
 
 module.exports = app;

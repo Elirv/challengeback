@@ -1,26 +1,16 @@
-const { Schema, model } = require('mongoose')
+const { Schema, model } = require("mongoose");
 
-const memesSchema = new Schema({ 
-    name: {
+const MemeSchema = Schema({
+    title: {
         type: String,
-        required: [true, "the name of the meme is required"],
-        trim: true
+        required: [true, "The title is required"],
     },
-    file: {
-        id: String,
-        url: {
-            type: String,
-            required: true,
-        }
+    url: {
+        type: String,
     },
-    fromuser: {
-        type: Schema.Types.ObjectId,
-        ref: 'users',
-        required: true
-    }, 
-    //timestamps: true
-})
+    fromUser: [{ type: Schema.Types.ObjectId, ref: "users" }],
+});
 
-const MemeModel = model('memes', memesSchema)
+const MemeModel = model("memes", MemeSchema);
 
 module.exports = MemeModel;

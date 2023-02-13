@@ -23,11 +23,11 @@ const CONFIG = {
             uri: process.env.MONGODB_URI_CLUSTER,
         },
 
-        auth0: {
-            client_origin: process.env.AUTH0_AUDIENCE,
-            audience: process.env.AUTH0_ISSUER,
-            issuer: process.env.APP_ORIGIN
-        }
+        // auth0: {
+        //     client_origin: process.env.AUTH0_AUDIENCE,
+        //     audience: process.env.AUTH0_ISSUER,
+        //     issuer: process.env.APP_ORIGIN
+        // }
 
     },
 };
