@@ -23,16 +23,14 @@ const deleteMeme = async (req, res, next) => {
 
 const createMeme = async (req, res, next) => {
   const { id } = req.params;
-  const { title, url, fromUser } = req.body;
+  const { title, url } = req.body;
 
   try {
-    const meme = await memeModel
-      .create({ title, url, fromUser }
-        
+    const meme = await memeModel.create({ title, url })
+    await meme.save();
+    res.json(meme);
 
-      )
-
-    res.status(200).send({ status: true, data: meme });
+    // res.status(200).send({ status: true, data: meme });
   } catch (error) {
     res.status(500).send({ status: false, msg: error.message });
   }
