@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const MemeSchema = Schema({
-    title: {
+    name: {
         type: String,
         // required: [true, "The title is required"],
     },
